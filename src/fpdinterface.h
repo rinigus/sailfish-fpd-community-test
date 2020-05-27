@@ -19,9 +19,16 @@ public:
 signals:
     void connectionStateChanged();
 
+    void stateChanged(const QString &state);
+    void enrollProgressChanged(int progress);
+    void acquisitionInfo(const QString &info);
+    void added(const QString &finger);
+    void identified(const QString &finger);
+
 public slots:
     void enroll(const QString &user);
     void identify();
+    void clear();
 
 private slots:
     void connectDaemon();

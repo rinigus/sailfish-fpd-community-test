@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: page
+    property string msg: ""
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -36,12 +37,44 @@ Page {
                     FPDInterface.enroll("finger");
                 }
             }
+            ProgressBar {
+                id: enrollProgress
+                minimumValue: 0
+                maximumValue: 100
+                value: 0
+                width: parent.width
+            }
+
+            Label {
+                width: parent.width
+                text: "Message: " + msg
+            }
+
             Button {
                 text: "Identify"
                 onClicked: {
                     FPDInterface.identify();
                 }
             }
+            Button {
+                text: "Clear Store"
+                onClicked: {
+                    FPDInterface.clear();
+                }
+            }
+        }
+    }
+
+
+    Connections {
+        target: FPDInterface
+        onEnrollProgressChanged: {
+            console.log("Enrollment progress changed ", progress);
+            enrollProgress.value = progress;
+        }
+
+        onAdded: {
+            msg = "Added finger" + finger;
         }
     }
 }

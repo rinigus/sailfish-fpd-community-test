@@ -30,6 +30,15 @@ void FPDInterface::identify()
     iface->call("Identify");
 }
 
+void FPDInterface::clear()
+{
+    qDebug() << Q_FUNC_INFO;
+    if (!iface->isValid()) {
+        return;
+    }
+    iface->call("Clear");
+}
+
 void FPDInterface::connectDaemon()
 {
     qDebug() << Q_FUNC_INFO;
@@ -47,7 +56,10 @@ void FPDInterface::connectDaemon()
     m_connected = true;
     connectionStateChanged();
 
-    //connect(iface, SIGNAL(message(QString)), this, SIGNAL(message(QString)), Qt::UniqueConnection);
+    //FPD Signals
+    connect(iface, SIGNAL(EnrollProgressChanged(int)), this, SIGNAL(enrollProgressChanged(int)), Qt::UniqueConnection);
+    connect(iface, SIGNAL(Added(const QString&)), this, SIGNAL(added(const QString&)), Qt::UniqueConnection);
+
 }
 
 void FPDInterface::disconnectDaemon()
