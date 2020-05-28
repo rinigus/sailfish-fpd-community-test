@@ -4,6 +4,8 @@ import Sailfish.Silica 1.0
 Page {
     id: page
     property string msg: ""
+    property string m_state: ""
+    property string m_acquisition: ""
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -62,6 +64,14 @@ Page {
                     FPDInterface.clear();
                 }
             }
+            Label {
+                width: parent.width
+                text: "State: " + m_state
+            }
+            Label {
+                width: parent.width
+                text: "Acquisition: " + m_acquisition
+            }
         }
     }
 
@@ -75,6 +85,18 @@ Page {
 
         onAdded: {
             msg = "Added finger" + finger;
+        }
+
+        onStateChanged: {
+            m_state = state;
+        }
+
+        onAcquisitionInfo: {
+            m_acquisition = info;
+        }
+
+        onIdentified: {
+            msg = "Identified: " + finger;
         }
     }
 }

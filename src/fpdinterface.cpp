@@ -59,6 +59,9 @@ void FPDInterface::connectDaemon()
     //FPD Signals
     connect(iface, SIGNAL(EnrollProgressChanged(int)), this, SIGNAL(enrollProgressChanged(int)), Qt::UniqueConnection);
     connect(iface, SIGNAL(Added(const QString&)), this, SIGNAL(added(const QString&)), Qt::UniqueConnection);
+    connect(iface, SIGNAL(StateChanged(const QString&)), this, SIGNAL(stateChanged(const QString&)), Qt::UniqueConnection);
+    connect(iface, SIGNAL(AcquisitionInfo(const QString&)), this, SIGNAL(acquisitionInfo(const QString&)), Qt::UniqueConnection);
+    connect(iface, SIGNAL(Identified(const QString&)), this, SIGNAL(identified(const QString&)), Qt::UniqueConnection);
 
 }
 
