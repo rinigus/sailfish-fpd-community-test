@@ -47,7 +47,7 @@ void FPDInterface::connectDaemon()
         iface->deleteLater();
     }
 
-    iface = new QDBusInterface(QStringLiteral(SERVICE_NAME), QStringLiteral("/"), QString(), QDBusConnection::systemBus());
+    iface = new QDBusInterface(QStringLiteral(SERVICE_NAME), QStringLiteral("/org/sailfishos/fingerprint1"), QStringLiteral(SERVICE_NAME), QDBusConnection::systemBus());
 
     if (!iface->isValid()) {
         iface->deleteLater();
