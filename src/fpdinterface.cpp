@@ -39,6 +39,15 @@ void FPDInterface::clear()
     iface->call("Clear");
 }
 
+void FPDInterface::enumerate()
+{
+    qDebug() << Q_FUNC_INFO;
+    if (!iface->isValid()) {
+        return;
+    }
+    iface->call("Enumerate");
+}
+
 void FPDInterface::connectDaemon()
 {
     qDebug() << Q_FUNC_INFO;

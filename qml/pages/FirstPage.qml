@@ -64,6 +64,12 @@ Page {
                     FPDInterface.clear();
                 }
             }
+            Button {
+                text: "Enumerate"
+                onClicked: {
+                    FPDInterface.enumerate();
+                }
+            }
             Label {
                 width: parent.width
                 text: "State: " + m_state

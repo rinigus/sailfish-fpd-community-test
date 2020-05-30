@@ -29,6 +29,7 @@ public slots:
     void enroll(const QString &user);
     void identify();
     void clear();
+    void enumerate();
 
 private slots:
     void connectDaemon();
