@@ -1,5 +1,7 @@
 #include "fpdinterface.h"
+
 #include <QDebug>
+#include <QDBusReply>
 
 FPDInterface::FPDInterface(QObject *parent) : QObject(parent),
     m_serviceWatcher(new QDBusServiceWatcher(
@@ -10,6 +12,7 @@ FPDInterface::FPDInterface(QObject *parent) : QObject(parent),
     QObject::connect(m_serviceWatcher, &QDBusServiceWatcher::serviceUnregistered, this, &FPDInterface::disconnectDaemon);
 
     connectDaemon();
+    onListChanged();
 }
 
 void FPDInterface::enroll(const QString &user)
@@ -39,13 +42,9 @@ void FPDInterface::clear()
     iface->call("Clear");
 }
 
-void FPDInterface::enumerate()
+QStringList FPDInterface::fingerprints() const
 {
-    qDebug() << Q_FUNC_INFO;
-    if (!iface->isValid()) {
-        return;
-    }
-    iface->call("Enumerate");
+    return m_fingerprints;
 }
 
 void FPDInterface::connectDaemon()
@@ -71,7 +70,7 @@ void FPDInterface::connectDaemon()
     connect(iface, SIGNAL(StateChanged(const QString&)), this, SIGNAL(stateChanged(const QString&)), Qt::UniqueConnection);
     connect(iface, SIGNAL(AcquisitionInfo(const QString&)), this, SIGNAL(acquisitionInfo(const QString&)), Qt::UniqueConnection);
     connect(iface, SIGNAL(Identified(const QString&)), this, SIGNAL(identified(const QString&)), Qt::UniqueConnection);
-
+    connect(iface, SIGNAL(ListChanged()), this, SIGNAL(onListChanged()), Qt::UniqueConnection);
 }
 
 void FPDInterface::disconnectDaemon()
@@ -81,4 +80,18 @@ void FPDInterface::disconnectDaemon()
     m_connected = false;
     connectionStateChanged();
 
+}
+
+void FPDInterface::onListChanged()
+{
+    qDebug() << Q_FUNC_INFO;
+    if (!iface->isValid()) {
+        return;
+    }
+
+    QDBusReply<QStringList> reply = iface->call("GetAll");
+    if (reply.isValid()) {
+        m_fingerprints = reply.value();
+        emit fingerprintsChanged(m_fingerprints);
+    }
 }

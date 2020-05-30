@@ -27,12 +27,30 @@ Page {
             PageHeader {
                 title: qsTr("Community FPD Test")
             }
+
+            SectionHeader {
+                text: "Status"
+            }
             Label {
                 x: Theme.horizontalPageMargin
-                text: FPDInterface.connected ? "Conneceted" : "Disconnected"
+                text: FPDInterface.connected ? "Connected" : "Disconnected"
                 color: Theme.secondaryHighlightColor
                 font.pixelSize: Theme.fontSizeExtraLarge
             }
+            Label {
+                width: parent.width
+                text: "State: " + m_state
+            }
+            Label {
+                width: parent.width
+                text: "Acquisition: " + m_acquisition
+            }
+
+
+            SectionHeader {
+                text: "Actions"
+            }
+
             Button {
                 text: "Enroll"
                 onClicked: {
@@ -65,18 +83,10 @@ Page {
                 }
             }
             Button {
-                text: "Enumerate"
+                text: "Get fingerprints"
                 onClicked: {
-                    FPDInterface.enumerate();
+                    console.log(FPDInterface.fingerprints);
                 }
-            }
-            Label {
-                width: parent.width
-                text: "State: " + m_state
-            }
-            Label {
-                width: parent.width
-                text: "Acquisition: " + m_acquisition
             }
         }
     }
