@@ -20,8 +20,8 @@ SOURCES += src/sailfish-fpd-community-test.cpp \
     src/fpdinterface.cpp
 
 DISTFILES += qml/sailfish-fpd-community-test.qml \
-    qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
+    qml/pages/EnrollPage.qml \
+    qml/pages/MainPage.qml \
     rpm/sailfish-fpd-community-test.changes.in \
     rpm/sailfish-fpd-community-test.changes.run.in \
     rpm/sailfish-fpd-community-test.spec \
