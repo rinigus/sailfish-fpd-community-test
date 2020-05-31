@@ -111,4 +111,11 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>sailfish-fpd-community-test</name>
+    <message>
+        <source>FPD Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
