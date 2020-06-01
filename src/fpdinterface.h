@@ -28,15 +28,19 @@ public:
 
 signals:
     void connectionStateChanged();
+    void fingerprintsChanged();
 
     void stateChanged(const QString &state);
     void enrollProgressChanged(int progress);
     void acquisitionInfo(const QString &info);
-    void errorInfo(const QString&);
+    void errorInfo(const QString &info);
+
     void added(const QString &finger);
-    void identified(const QString &finger);
     void removed(const QString &finger);
-    void fingerprintsChanged();
+    void identified(const QString &finger);
+    void aborted();
+    void failed();
+    void verified();
 
 public slots:
     int enroll(const QString &finger);

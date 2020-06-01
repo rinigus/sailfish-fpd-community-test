@@ -83,6 +83,9 @@ void FPDInterface::connectDaemon()
     connect(iface, SIGNAL(Added(const QString&)), this, SIGNAL(added(const QString&)), Qt::UniqueConnection);
     connect(iface, SIGNAL(Removed(const QString&)), this, SIGNAL(removed(const QString&)), Qt::UniqueConnection);
     connect(iface, SIGNAL(Identified(const QString&)), this, SIGNAL(identified(const QString&)), Qt::UniqueConnection);
+    connect(iface, SIGNAL(Aborted()), this, SIGNAL(aborted()), Qt::UniqueConnection);
+    connect(iface, SIGNAL(Failed()), this, SIGNAL(failed()), Qt::UniqueConnection);
+    connect(iface, SIGNAL(Verified()), this, SIGNAL(verified()), Qt::UniqueConnection);
 
     connect(iface, SIGNAL(StateChanged(const QString&)), this, SIGNAL(stateChanged(const QString&)), Qt::UniqueConnection);
     connect(iface, SIGNAL(EnrollProgressChanged(int)), this, SLOT(onEnrollProgress(int)), Qt::UniqueConnection);
