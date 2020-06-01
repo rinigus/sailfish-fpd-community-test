@@ -3,7 +3,7 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=sailfish-fpd-community-test
 Exec=sailfish-fpd-community-test
-Name=sailfish-fpd-community-test
+Name=FPD Test
 # translation example:
 # your app name in German locale (de)
 #
