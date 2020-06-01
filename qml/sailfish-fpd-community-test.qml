@@ -4,6 +4,13 @@ import "pages"
 
 ApplicationWindow
 {
-    initialPage: Component { FirstPage { } }
+    initialPage: Component { MainPage { } }
     allowedOrientations: defaultAllowedOrientations
+    cover: Component {
+        CoverBackground {
+            CoverPlaceholder {
+                text: qsTr("FPD Test")
+            }
+        }
+    }
 }
