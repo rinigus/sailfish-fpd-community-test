@@ -128,10 +128,14 @@ Page {
         target: FPDInterface
 
         onAdded: addLog(qsTr("Added finger %1").arg(finger))
+        onRemoved: addLog(qsTr("Removed finger: %1").arg(finger))
+        onIdentified: addLog(qsTr("Identified finger: %1").arg(finger))
+        onAborted: addLog(qsTr("Aborted"))
+        onFailed: addLog(qsTr("Failed"))
+        onVerified: addLog(qsTr("Verified"))
+
         onAcquisitionInfo: addLog(qsTr("Acqusition info: %1").arg(info))
         onErrorInfo: addLog(qsTr("Error: %1").arg(info))
-        onIdentified: addLog(qsTr("Identified finger: %1").arg(finger))
-        onRemoved: addLog(qsTr("Removed finger: %1").arg(finger))
         onFingerprintsChanged: updateFingers()
     }
 

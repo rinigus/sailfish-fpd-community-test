@@ -110,6 +110,18 @@
         <source>Error while starting removal: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Aborted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Verified</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>sailfish-fpd-community-test</name>
